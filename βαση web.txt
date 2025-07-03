@@ -1,0 +1,147 @@
+-- Πίνακας Χρηστών (για login)
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL, 
+    role ENUM('φοιτητής', 'διδάσκων', 'γραμματεία') NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Πίνακας Φοιτητών
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    student_number VARCHAR(20) UNIQUE, 
+    address TEXT,
+    mobile_phone VARCHAR(20),
+    landline_phone VARCHAR(20),
+    enrollment_year YEAR,
+    FOREIGN KEY (student_id) REFERENCES Users(user_id) ON DELETE CASCADE
+);
+
+-- Πίνακας Διδασκόντων
+CREATE TABLE Professors (
+    professor_id INT PRIMARY KEY,
+    phone VARCHAR(20),
+    specialization TEXT,
+    FOREIGN KEY (professor_id) REFERENCES Users(user_id) ON DELETE CASCADE
+);
+
+-- Πίνακας Θεμάτων
+CREATE TABLE ThesisTopics (
+    topic_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(200) NOT NULL,
+    description TEXT,
+    file_link VARCHAR(255),
+    professor_id INT NOT NULL,
+    is_available BOOLEAN DEFAULT TRUE,
+    max_students INT DEFAULT 1, -- Μέγιστος αριθμός φοιτητών ανά θέμα
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (professor_id) REFERENCES Professors(professor_id)
+);
+
+-- Πίνακας Τριμελών Επιτροπών
+CREATE TABLE Committees (
+    committee_id INT PRIMARY KEY AUTO_INCREMENT,
+    supervisor_id INT NOT NULL,
+    member1_id INT NOT NULL,
+    member2_id INT NOT NULL,
+    closed_invitations BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (supervisor_id) REFERENCES Professors(professor_id),
+    FOREIGN KEY (member1_id) REFERENCES Professors(professor_id),
+    FOREIGN KEY (member2_id) REFERENCES Professors(professor_id),
+   
+ -- Ensure all committee members are different
+    CONSTRAINT unique_committee_members CHECK (
+        supervisor_id != member1_id AND 
+        supervisor_id != member2_id AND 
+        member1_id != member2_id
+    )
+);
+
+-- Πίνακας Πρόσκλησης προς Τριμελή
+CREATE TABLE CommitteeInvitations (
+    invitation_id INT PRIMARY KEY AUTO_INCREMENT,
+    committee_id INT NOT NULL,
+    student_id INT NOT NULL,
+    invited_on DATE NOT NULL,
+    accepted_on DATE NULL,
+    declined_on DATE NULL,
+    response_deadline DATE,
+    notes TEXT,
+    FOREIGN KEY (committee_id) REFERENCES Committees(committee_id),
+    FOREIGN KEY (student_id) REFERENCES Students(student_id),
+    
+-- Ensure only one response per invitation
+    CONSTRAINT single_response CHECK (
+        (accepted_on IS NULL AND declined_on IS NULL) OR
+        (accepted_on IS NOT NULL AND declined_on IS NULL) OR
+        (accepted_on IS NULL AND declined_on IS NOT NULL)
+    )
+);
+
+-- Πίνακας Διπλωματικών Εργασιών
+CREATE TABLE Theses (
+    thesis_id INT PRIMARY KEY AUTO_INCREMENT,
+    topic_id INT NOT NULL,
+    student_id INT NOT NULL,
+    supervisor_id INT NOT NULL,
+    committee_id INT NULL,
+    status ENUM('υπό ανάθεση', 'ενεργή', 'υπό εξέταση', 'περατωμένη', 'ακυρωμένη') DEFAULT 'υπό ανάθεση',
+    grade DECIMAL(4,2) NULL CHECK (grade >= 0 AND grade <= 10),
+    start_date DATE,
+    completion_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (topic_id) REFERENCES ThesisTopics(topic_id),
+    FOREIGN KEY (student_id) REFERENCES Students(student_id),
+    FOREIGN KEY (supervisor_id) REFERENCES Professors(professor_id),
+    FOREIGN KEY (committee_id) REFERENCES Committees(committee_id),
+    
+-- Ensure one active thesis per student
+    UNIQUE KEY unique_active_thesis (student_id, status)
+);
+
+-- Πίνακας Παρουσιάσεων
+CREATE TABLE Presentations (
+    presentation_id INT PRIMARY KEY AUTO_INCREMENT,
+    thesis_id INT NOT NULL,
+    presentation_date DATE NOT NULL,
+    presentation_time TIME NOT NULL,
+    location_or_link TEXT,
+    duration_minutes INT DEFAULT 60,
+    FOREIGN KEY (thesis_id) REFERENCES Theses(thesis_id)
+);
+
+-- Πίνακας Βαθμολογιών από μέλη επιτροπής
+CREATE TABLE Grades (
+    grade_id INT PRIMARY KEY AUTO_INCREMENT,
+    thesis_id INT NOT NULL,
+    professor_id INT NOT NULL,
+    grade DECIMAL(4,2) NOT NULL CHECK (grade >= 0 AND grade <= 10),
+    comments TEXT,
+    graded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (thesis_id) REFERENCES Theses(thesis_id),
+    FOREIGN KEY (professor_id) REFERENCES Professors(professor_id),
+    UNIQUE KEY unique_grade_per_professor (thesis_id, professor_id)
+);
+
+
+-- Πίνακας Αρχείων Διπλωματικής
+CREATE TABLE ThesisFiles (
+    file_id INT PRIMARY KEY AUTO_INCREMENT,
+    thesis_id INT NOT NULL,
+    file_name VARCHAR(255) NOT NULL,
+    file_path VARCHAR(500) NOT NULL,
+    file_type ENUM('draft', 'final', 'presentation', 'supplementary') NOT NULL,
+    file_size BIGINT,
+    uploaded_by INT NOT NULL,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_active BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (thesis_id) REFERENCES Theses(thesis_id),
+    FOREIGN KEY (uploaded_by) REFERENCES Users(user_id)
+);
