@@ -1,0 +1,24 @@
+--ΔΙΔΑΣΚΟΝ ΠΡΟΒΟΛΗ ΚΑΙ ΔΗΜΙΟΥΡΓΙΑ
+
+
+
+--ΠΡΟΒΟΛΗ ΘΕΜΑΤΩΝ ΠΟΥ ΕΧΕΙ ΔΗΜΙΟΥΡΓΗΣΕΙ
+CREATE PROCEDURE view_theses_topics(IN professor_id)
+BEGIN
+SELECT* FROM TheseTopics WHERE professor_id = professor_id;
+
+END;
+
+
+--ΑΝΑΘΕΣΗ ΘΕΜΑΤΟΣ
+CREATE PROCEDURE create_topics_for_assignment(IN title, IN description, IN file_link, IN professor_id)
+BEGIN
+
+
+INSERT INTO ThesesTopics
+--topicid title description dilelink profid isavailable maxstudents createdat updated at
+VALUES(NULL, title, description, file_link, professor_id, NULL, NULL, NULL, NULL)
+
+
+
+END;
