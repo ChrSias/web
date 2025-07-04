@@ -1,0 +1,31 @@
+CREATE PROCEDURE view_committee_invites(professor_id)
+BEGIN
+
+SELECT * FROM CommitteeInvitations WHERE professor_id = professor_id;
+
+END;
+
+
+
+CREATE PROCEDURE manage_invitation (IN ad ENUM('ACCEPT', 'DECLINE'), IN professor_id, IN invitation_id)
+BEGIN
+--ΔΕΝ ΞΕΡΩ ΑΝ ΠΡΕΠΕΙ ΝΑ ΥΠΑΡΧΕΙ ΑΥΤΟ ΕΔΩ ΑΛΛΑ ΝΟΜΙΖΩ ΠΡΕΠΕΙ
+
+IF SELECT accepted_on FROM CommitteeInvitations WHERE invitation_id = invitation_id IS NOT NULL 
+OR SELECT declined_on FROM CommitteeInvitations WHERE invitation_id = invitation_id IS NOT NULL
+THEN
+SIGNAL SQLSTATE '4'
+SET MESSAGE_TEXT = 'INVITATION ALREADY ACCEPTED/DECLINED';
+END IF;
+
+IF ad = 'ACCEPT'
+INSERT INTO CommitteeInvitations(accepted_on)
+VALUES (NNOW());
+END IF;
+
+IF ad = 'DECLINE'
+INSERT INTO CommitteeInvitations(declined_on)
+VALUES (NOW());
+END IF;
+
+END;
