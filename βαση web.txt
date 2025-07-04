@@ -69,6 +69,7 @@ CREATE TABLE CommitteeInvitations (
     invitation_id INT PRIMARY KEY AUTO_INCREMENT,
     committee_id INT NOT NULL,
     student_id INT NOT NULL,
+    inv_professor_id INT NOT NULL,
     invited_on DATE NOT NULL,
     accepted_on DATE NULL,
     declined_on DATE NULL,
@@ -76,6 +77,7 @@ CREATE TABLE CommitteeInvitations (
     notes TEXT,
     FOREIGN KEY (committee_id) REFERENCES Committees(committee_id),
     FOREIGN KEY (student_id) REFERENCES Students(student_id),
+    FOREIGN KEY (inv_professor_id) REFERENCES Professors(professor_id),
     
 -- Ensure only one response per invitation
     CONSTRAINT single_response CHECK (
