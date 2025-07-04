@@ -1,0 +1,135 @@
+
+
+
+CREATE PROCEDURE show_theses (IN professor_id INT, IN time ENUM('PAST', 'PRESENT'), IN role ENUM('SUPERVISOR', 'COMMITTEE'), IN status ENUM('UNDER ASSIGNMENT', 'ACTIVE', 'COMPLETED', 'CANCELED', NULL) )
+BEGIN
+
+IF professor_id = NULL THEN 
+SIGNAL SQLSTATE '3'
+SET MESSAGE_TEXT = 'CANT FIND THESES WITH NO PROFESSOR_ID'
+
+
+
+
+IF time = 'PAST' AND status IN ('UNDER ASSIGNMENT', 'ACTIVE') THEN
+SIGNAL SQLSTATE '1'
+SET MESSAGE_TEXT = 'THERE CAN'T EXIST PAST THESES THAT ARE UNDER ASSIGNMENT OR ACTIVE'
+
+
+
+IF time = 'PRESENT' AND status IN ('COMPLETED', 'CANCELED') THEN
+SIGNAL SQLSTATE '2'
+SET MESSAGE_TEXT = 'THERE CAN'T EXIST PRESENT THESES THAT ARE COMPLETED OR CANCELED'
+
+
+
+
+--ΣΥΜΜΕΤΕΙΧΕ ΩΣ ΕΠΙΒΛΕΠΩΝ
+
+IF time = 'PAST' AND role = 'SUPERVISOR' AND status = NULL
+SELECT * FROM thesis 
+JOIN Committees ON committee_id = committee_id 
+JOIN TheseTopics ON topic_id = topic_id
+WHERE didason_id = didaskon_id AND status IN('COMPLETED', 'CANCELED')
+
+
+IF time = 'PAST' AND role = 'SUPERVISOR' AND status = 'COMPLETED'
+SELECT * FROM thesis 
+JOIN Committees ON committee_id = committee_id 
+JOIN TheseTopics ON topic_id = topic_id
+WHERE professor_id = supervisor_id AND status = 'COMPLETED'
+
+
+IF time = 'PAST' AND role = 'SUPERVISOR' AND status = 'CANCELED'
+SELECT * FROM thesis 
+JOIN Committees ON committee_id = committee_id 
+JOIN TheseTopics ON topic_id = topic_id
+WHERE professor_id = supervisor_id AND status = 'CANCELED'
+
+
+
+--ΣΥΜΜΕΤΕΙΧΕ ΩΣ ΜΕΛΟΣ ΤΡΙΜΕΛΟΥΣ 
+IF time = 'PAST' AND role = 'COMMITTEE' AND status = NULL
+SELECT theses_id, theses.title, committee_id FROM theses 
+JOIN Committees ON theses.committee_id = committees.committee_id
+JOIN ThesesTopics ON topic_id = topic_id
+WHERE professor_id IN (committee.member1_id, committee.member2_id, committee.member3_id) 
+AND theses.status IN ('COMPLETED', 'CANCELED');
+
+
+IF time = 'PAST' AND role = 'COMMITTEE' AND status = 'COMPLETED'
+SELECT theses_id, theses.title, committee_id FROM theses 
+JOIN Committees ON theses.committee_id = committees.committee_id
+JOIN ThesesTopics ON topic_id = topic_id
+WHERE professor_id IN (committee.member1_id, committee.member2_id, committee.member3_id) 
+AND theses.status = 'COMPLETED';
+
+
+IF time = 'PAST' AND role = 'COMMITTEE' AND status = 'CANCELED'
+SELECT theses_id, theses.title, committee_id FROM theses 
+JOIN Committees ON theses.committee_id = committees.committee_id
+JOIN ThesesTopics ON topic_id = topic_id
+WHERE professor_id IN (committee.member1_id, committee.member2_id, committee.member3_id) 
+AND theses.status = 'CANCELED';
+
+
+
+
+--ΣΥΜΜΕΤΕΧΕΙ ΤΩΡΑ ΩΣ ΕΠΙΒΛΕΠΩΝ
+
+IF time = 'PRESENT' AND role = 'SUPERVISOR' AND status = NULL
+SELECT * FROM thesis 
+JOIN Committees ON committee_id = committee_id 
+JOIN TheseTopics ON topic_id = topic_id
+WHERE professor_id = supervisor_id 
+AND status IN ('COMPLETED', 'CANCELED');
+
+
+IF time = 'PRESENT' AND role = 'SUPERVISOR' AND status = 'COMPLETED'
+SELECT * FROM thesis 
+JOIN Committees ON committee_id = committee_id 
+JOIN TheseTopics ON topic_id = topic_id
+WHERE professor_id = supervisor_id 
+AND status = 'COMPLETED';
+
+
+IF time = 'PRESENT' AND role = 'SUPERVISOR' AND status = 'CANCELED'
+SELECT * FROM thesis 
+JOIN Committees ON committee_id = committee_id 
+JOIN TheseTopics ON topic_id = topic_id
+WHERE professor_id = supervisor_id 
+AND status = 'CANCELED';
+
+
+
+
+
+--ΣΥΜΜΕΤΕΧΕΙ ΤΩΡΑ ΩΣ ΜΕΛΟΣ ΤΡΙΜΕΛΟΥΣ
+
+IF time = 'PRESENT' AND role = 'COMMITTEE' AND status = NULL
+SELECT * FROM thesis 
+JOIN Committees ON committee_id = committee_id 
+JOIN TheseTopics ON topic_id = topic_id
+WHERE professor_id IN (committee.member1_id, committee.member2_id, committee.member3_id) 
+AND status IN ('COMPLETED', 'CANCELED');
+
+
+IF time = 'PRESENT' AND role = 'COMMITTEE' AND status = 'COMPLETED'
+SELECT * FROM thesis 
+JOIN Committees ON committee_id = committee_id 
+JOIN TheseTopics ON topic_id = topic_id
+WHERE professor_id IN (committee.member1_id, committee.member2_id, committee.member3_id)  
+AND status = 'COMPLETED';
+
+IF time = 'PRESENT' AND role = 'COMMITTEE' AND status = 'CANCELED'
+SELECT * FROM thesis 
+JOIN Committees ON committee_id = committee_id 
+JOIN TheseTopics ON topic_id = topic_id
+WHERE professor_id IN (committee.member1_id, committee.member2_id, committee.member3_id)
+AND status = 'CANCELED';
+
+
+
+END;
+
+ 
