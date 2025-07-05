@@ -1,0 +1,117 @@
+--5
+--i
+
+CREATE PROCEDURE average_time_for_completion_of_theses (IN professor_id, IN a ENUM('SUPERVISOR', 'COMMITTEE', 'BOTH'), OUT super, OUT comm)
+BEGIN
+
+IF a = 'SUPERVISOR'
+SELECT AVG(DATEDIFF(completion_date, start_date)) AS avg_duration 
+INTO super
+FROM Theses 
+WHERE supervisor_id = professor_id;
+END IF;
+
+IF a = 'COMMITTEE'
+SELECT AVG(DATEDIFF(completion_date, start_date)) AS avg_duration 
+INTO comm
+FROM Theses
+JOIN Committees
+ON committee_id = committee_id
+WHERE professor_id IN(member1_id, member2_id, member3_id);
+END IF;
+
+IF a = 'BOTH'
+SELECT AVG(DATEDIFF(completion_date, start_date)) AS avg_duration 
+INTO super
+FROM Theses 
+WHERE supervisor_id = professor_id;
+
+SELECT AVG(DATEDIFF(completion_date, start_date)) AS avg_duration 
+INTO comm
+FROM Theses
+JOIN Committees
+ON committee_id = committee_id
+WHERE professor_id IN(member1_id, member2_id, member3_id);
+END IF;
+
+END;
+
+
+
+
+--ii
+
+CREATE PROCEDURE average_grade_of_theses (IN professor_id, IN a ENUM('SUPERVISOR', 'COMMITTEE', 'BOTH'), OUT super, OUT comm))
+BEGIN
+
+IF a = 'SUPERVISOR'
+SELECT AVG(grade) AS avg_grade 
+INTO super
+FROM Theses 
+WHERE supervisor_id = professor_id;
+END IF;
+
+IF a = 'COMMITTEE'
+SELECT AVG(grade) AS avg_grade 
+INTO comm
+FROM Theses
+JOIN Committees
+ON committee_id = committee_id
+WHERE professor_id IN(member1_id, member2_id, member3_id);
+END IF;
+
+IF a = 'BOTH'
+SELECT AVG(grade) AS avg_grade_supervisor
+INTO super
+FROM Theses 
+WHERE supervisor_id = professor_id;
+
+SELECT AVG(grade) AS avg_grade_committee
+INTO comm
+FROM Theses
+JOIN Committees
+ON committee_id = committee_id
+WHERE professor_id IN(member1_id, member2_id, member3_id);
+END IF;
+
+END;
+
+
+
+--iii
+
+CREATE PROCEDURE total_num_of_theses (IN professor_id, IN a ENUM('SUPERVISOR', 'COMMITTEE', 'BOTH'), OUT super, OUT comm))
+BEGIN
+
+IF a = 'SUPERVISOR'
+SELECT COUNT(*) AS total_num_of_theses 
+INTO super
+FROM Theses 
+WHERE supervisor_id = professor_id;
+END IF;
+
+IF a = 'COMMITTEE'
+SELECT COUNT(*) AS total_num_of_theses 
+INTO comm
+FROM Theses
+JOIN Committees
+ON committee_id = committee_id
+WHERE professor_id IN(member1_id, member2_id, member3_id);
+END IF;
+
+IF a = 'BOTH'
+SELECT COUNT(*) AS total_num_of_theses_supervisor
+INTO super
+FROM Theses 
+WHERE supervisor_id = professor_id;
+
+SELECT COUNT(*) AS total_num_of_theses_committee
+INTO comm
+FROM Theses
+JOIN Committees
+ON committee_id = committee_id
+WHERE professor_id IN(member1_id, member2_id, member3_id);
+END IF;
+
+
+END;
