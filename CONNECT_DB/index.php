@@ -12,9 +12,17 @@
   <input type="text" name="last_name" placeholder="Last Name" required>
   <input type="email" name="email" placeholder="Email" required>
   <input type="password" name="password" placeholder="Password" required>
+ 
+<label for="role">Επιλογή ρόλου:</label>
+<select name="role" id="role" required>
+  <option value="φοιτητής">Φοιτητής</option>
+  <option value="διδάσκων">Διδάσκων</option>
+  <option value="γραμματεία">Γραμματεία</option>
+</select>
+
+
   <button type="submit">Add User</button>
 </form>
-
 <h2>Users List</h2>
 <div id="usersList"></div>
 
@@ -33,7 +41,7 @@
       if (data.success) {
         alert(data.success);
         this.reset();
-        fetchUsers(); // ✅ correct case
+        fetchUsers();
       } else {
         alert('Error: ' + (data.error || 'Unknown error'));
       }
@@ -43,9 +51,9 @@
 
   function fetchUsers() {
   fetch('fetch_users.php')
-    .then(res => res.text())   // Use text() because PHP outputs HTML
+    .then(res => res.text())   
     .then(html => {
-      document.getElementById('usersList').innerHTML = html; // Inject raw HTML
+      document.getElementById('usersList').innerHTML = html; 
     })
     .catch(() => {
       document.getElementById('usersList').innerHTML = '<p>Failed to load users.</p>';
@@ -53,6 +61,6 @@
 }
 
 
-  fetchUsers(); // ✅ correct case
+  fetchUsers(); 
 </script>
 
