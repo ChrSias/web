@@ -4,7 +4,7 @@ session_start();
 session_unset();
 session_destroy();
 
-header("Location: ../Login-out/login.php");
+header("Location: ../Login/login.html");
 
 
 $role = $_GET['role'] ?? '';
