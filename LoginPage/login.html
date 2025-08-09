@@ -10,17 +10,36 @@
       font-family: Arial, sans-serif;
     }
 
-  /* H mpara sto pano meros ths selidas*/
-    header {
+  /* To box sto kentro thw selidas poy periexe ito koympi login*/
+   header1 {
+  background-color: darkblue;
+  padding: 80px 80px;      /* λίγο μεγαλύτερο padding για να φαίνεται σαν κουτί */
+  color: white;
+  display: inline-flex;    /* inline-flex για να έχει το πλάτος του περιεχομένου */
+  justify-content: center; /* κεντράρει το περιεχόμενο μέσα στο κουτί */
+  border-radius: 8px;      /* προαιρετικό, για να έχει στρογγυλεμένες γωνίες */
+  position: absolute;      /* τοποθετεί το κουτί σχετικά με το παράθυρο */
+  top: 50%;               /* κάθετα στο κέντρο */
+  left: 50%;              /* οριζόντια στο κέντρο */
+  transform: translate(-50%, -50%); /* μετακίνηση για τέλειο κεντράρισμα */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* προαιρετικό, για σκιά */
+}
+   header2 {
       background-color: darkblue;
-      padding: 12px;
+      padding: 2px;
       color: white;
       display: flex;
       justify-content: flex-end;
     }
+    center_box{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
     /*To sxhma ktl toy login*/
      .login-btn {
-      background-color: #007BFF;
+      background-color: rgb(96, 96, 238);
       color: white;
       border: none;
       padding: 10px 20px;
@@ -96,10 +115,14 @@
 </style>
 </head>
 <body>
-    <header>
-  <button class="login-btn" onclick="openpopup()">Login</button>
-</header>
 
+    <header1>
+  <button class="login-btn" onclick="openpopup()">Login</button>
+</header1>
+
+<header2>
+  <h1>Καλώς ήρθατε στην εφαρμογή μας</h1>
+</header2>
 <!-- Login Popup -->
 <div id="loginpopup" class="popup">
   <div class="popup_content">
@@ -129,7 +152,7 @@
 </div>
 
 <script>
-  
+
   function openpopup() {
     document.getElementById("loginpopup").style.display = "block";
   }
@@ -157,11 +180,13 @@
     document.getElementById('errorMsg').innerText = 'Κάτι πήγε στραβά. Προσπαθήστε ξανά.';
   });
 });
-   window.addEventListener('click', e => {
-    if (e.target.id === 'loginpopup') {
-      document.getElementById('loginpopup').remove();
+/*Kleinei to popup otan kano click ekso apo ayto alla paramenei sto session*/
+ window.onclick = function(event) {
+    const popup = document.getElementById("loginpopup");
+    if (event.target == popup) {
+      popup.style.display = "none";
     }
-  });
+  };
 
 </script>
 
@@ -234,4 +259,3 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
 </body>
 </html>-->
-

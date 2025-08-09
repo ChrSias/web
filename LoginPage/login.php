@@ -1,10 +1,12 @@
 <?php
+//session_set_cookie_params(0);
 session_start();
+
 require '../connect_database/conn_database.php'; 
 
  $role = $_POST['role'] ?? 'χρήστης';  
 
-header('Content-Type: application/json'); // Always return JSON
+header('Content-Type: application/json'); 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $first_name = $_POST['first_name'] ?? '';
@@ -15,14 +17,13 @@ $last_name = $_POST['last_name'] ?? '';
         echo json_encode(['success' => false, 'message' => 'Όλα τα πεδία είναι υποχρεωτικά.']);
         exit;
     }
-       $stmt = $mysqli->prepare("SELECT * FROM users WHERE first_name = ? AND last_name = ?");
-    $stmt->bind_param("ss", $first_name, $last_name);
+       $stmt = $mysqli->prepare("SELECT * FROM users WHERE first_name=? AND last_name=?");
+    $stmt->bind_param("ss",$first_name,$last_name);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $result =$stmt->get_result();
 
-
-    if ($user = $result->fetch_assoc()) {
-            $hashed_password = $user['password']; 
+    if ($user=$result->fetch_assoc()){
+            $hashed_password=$user['password']; 
 
        if (password_verify($password, $hashed_password)) {  
             $_SESSION['loggedin'] = true;
@@ -219,4 +220,5 @@ document.addEventListener('submit', function (e) {
     });
   }
   });
+
 </script>-->
