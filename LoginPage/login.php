@@ -1,5 +1,5 @@
 <?php
-session_set_cookie_params(0);
+//session_set_cookie_params(0);
 session_start();
 
 require '../connect_database/conn_database.php'; 
@@ -220,4 +220,5 @@ document.addEventListener('submit', function (e) {
     });
   }
   });
+
 </script>-->
