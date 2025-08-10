@@ -10,41 +10,41 @@
       font-family: Arial, sans-serif;
     }
 
-  /* To box sto kentro thw selidas poy periexe ito koympi login*/
+  /* To box sto kentro thw selidas poy periexei to koympi login*/
    header1 {
   background-color: darkblue;
-  padding: 80px 80px;      /* λίγο μεγαλύτερο padding για να φαίνεται σαν κουτί */
+  padding: 80px 80px;      
   color: white;
-  display: inline-flex;    /* inline-flex για να έχει το πλάτος του περιεχομένου */
-  justify-content: center; /* κεντράρει το περιεχόμενο μέσα στο κουτί */
-  border-radius: 8px;      /* προαιρετικό, για να έχει στρογγυλεμένες γωνίες */
-  position: absolute;      /* τοποθετεί το κουτί σχετικά με το παράθυρο */
-  top: 50%;               /* κάθετα στο κέντρο */
-  left: 50%;              /* οριζόντια στο κέντρο */
-  transform: translate(-50%, -50%); /* μετακίνηση για τέλειο κεντράρισμα */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* προαιρετικό, για σκιά */
+  display: inline-flex;   
+  justify-content: center; 
+  border-radius: 8px;      
+  position: absolute;     
+  top: 50%;               
+  left: 50%;            
+  transform: translate(-50%, -50%); 
+  box-shadow: 0 4px 8px rgba(0,0,0,1); 
 }
    header2 {
       background-color: darkblue;
       padding: 2px;
       color: white;
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
     }
-
+    
     /*To sxhma ktl toy login*/
      .login-btn {
       background-color: rgb(96, 96, 238);
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 20px 30px;
       cursor: pointer;
       font-size: 16px;
       border-radius: 5px;
     }
 
 
-  /* pow tha einai oi leitoyrgiestoy popup sthn selida */
+  /* pow tha einai oi leitoyrgies toy popup sthn selida */
   .popup {
     display: none;
     position: fixed;
@@ -109,14 +109,15 @@
   }
 </style>
 </head>
-<body>
 
+
+<body>    
     <header1>
   <button class="login-btn" onclick="openpopup()">Login</button>
 </header1>
 
 <header2>
-  <h1>Καλώς ήρθατε στην εφαρμογή μας</h1>
+  <h1>Καλώς ήρθατε!</h1>
 </header2>
 <!-- Login Popup -->
 <div id="loginpopup" class="popup">
@@ -154,6 +155,9 @@
 
   function closepopup() {
     document.getElementById("loginpopup").style.display = "none";
+   // Svhnei ta data apo to popup otan patas exit 
+  const form = document.querySelector('#loginpopup form');
+  if (form) form.reset();
   }
 
   document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -175,8 +179,8 @@
     document.getElementById('errorMsg').innerText = 'Κάτι πήγε στραβά. Προσπαθήστε ξανά.';
   });
 });
-/*Kleinei to popup otan kano click ekso apo ayto alla paramenei sto session*/
- window.onclick = function(event) {
+/*Kleinei to popup otan kano click ekso apo ayto alla paramenei to popup sto session*/
+ window.onclick = function(event) {  
     const popup = document.getElementById("loginpopup");
     if (event.target == popup) {
       popup.style.display = "none";
@@ -187,71 +191,4 @@
 
 </body>
 </html>
-<!--
-Top bar 
-<div class="header">
-  <button onclick="openpopup()">Login</button>
-</div>
-
-<!-- Login Popup 
-<div id="loginpopup" class="popup">
-  <div class="popup_content">
-    <span class="close" onclick="closepopup()">&times;</span>
-    <form id="loginForm">
-      <div class="form-group">
-        <label>First Name:</label>
-        <input type="text" name="first_name" required>
-      </div>
-      <div class="form-group">
-        <label>Last Name:</label>
-        <input type="text" name="last_name" required>
-      </div>
-      <div class="form-group">
-        <label>Password:</label>
-        <input type="password" name="password" required>
-      </div>
-      <button class="submit-btn" type="submit">Login</button>
-      <div id="errorMsg"></div>
-    </form>
-  </div>
-</div>
-
-<script>
-function openpopup() {
-  document.getElementById("loginpopup").style.display = "block";
-}
-function closepopup() {
-  document.getElementById("loginpopup").style.display = "none";
-}
-window.onclick = function(event) {
-  const popup = document.getElementById("loginpopup");
-  if (event.target == popup) {
-    popup.style.display = "none";
-  }
-};
-
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const formData = new FormData(this);
-
-  fetch('login.php', {
-    method: 'POST',
-    body: formData
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.success) {
-      window.location.href = data.redirect;
-    } else {
-      document.getElementById('errorMsg').innerText = data.message;
-    }
-  })
-  .catch(() => {
-    document.getElementById('errorMsg').innerText = 'Σφάλμα διακομιστή. Προσπαθήστε ξανά.';
-  });
-});
-</script>
-
-</body>
-</html>-->
 
