@@ -9,14 +9,14 @@ $password= $_POST['password'] ?? '';
 $email= $_POST['email'] ?? '';
 $role= $_POST['role'] ?? '';
 
+//Metatrepei to proto gramma thw metavlhthw se kefalaio kai ta ypoloipa peza
 $role = trim($role);
 $role = mb_strtolower($role, 'UTF-8');
-$firstChar = mb_strtoupper(mb_substr($role, 0, 1, 'UTF-8'), 'UTF-8');
-$restChars = mb_substr($role, 1, null, 'UTF-8');
-$role = $firstChar . $restChars;
+
+
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-
+//Oles oi metafores ginontai oles mazi, allios akyronontai oles
 $mysqli->begin_transaction();
 
 try {
@@ -31,7 +31,7 @@ try {
     $user_id = $stmt->insert_id; 
     $stmt->close();
 
-    $role_normalized = mb_strtolower($role, 'UTF-8');
+    $role_normalized= mb_strtolower($role, 'UTF-8');
 
     switch ($role_normalized) {
         case 'φοιτητής': 
