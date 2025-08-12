@@ -1,0 +1,37 @@
+  /* Poso megalh that einai h mpara*/
+  body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+     .header {
+      background-color: darkblue;
+      padding: 2px;
+      color: white;
+     
+      display: flex;
+      justify-content: flex-start;
+    }
+      .header h1 {
+    margin: 0.25em 0;
+    padding-left: 15px; /* to keno poy that exei apo ta aristera toy page o titlos  */
+  }
+   .btn-container button {
+      padding: 12px 30px;
+      background-color: grey;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background-color 0.3s ease;
+      margin-bottom: 18px;  /* keno apo kathe koympi*/
+      margin-top: 14px;;
+      display: block; /* ousiastika mpainei to ena kato apo to allo */
+      width: 40%; /*poso megalo ua einai to koympi */
+      margin-left: auto; 
+      margin-right: auto; /* Κkai ta dyo mazi vazoyn ta koympia sto kentro */
+  }
+
+  .btn-container button:hover {
+      background-color: lightblue;
+  }
