@@ -1,16 +1,19 @@
+
+
   /* Poso megalh that einai h mpara*/
   body {
       margin: 0;
       font-family: Arial, sans-serif;
     }
-     .header {
-      background-color: darkblue;
-      padding: 2px;
-      color: white;
-     
-      display: flex;
-      justify-content: flex-start;
-    }
+    .header {
+  position: relative;         /* Needed for absolute positioning of logout button */
+  background-color: darkblue; /* Keep your original dark blue */
+  color: white;
+  padding: 2px;
+  display: flex;
+  justify-content: flex-start;
+}
+
       .header h1 {
     margin: 0.25em 0;
     padding-left: 15px; /* to keno poy that exei apo ta aristera toy page o titlos  */
@@ -35,3 +38,28 @@
   .btn-container button:hover {
       background-color: lightblue;
   }
+/*Poy that einai to logout button*/
+.btn-contain1 {
+  position: absolute;      
+  top: 8px;               
+  right: 20px;             
+}
+
+ 
+.header .btn-contain1 button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.header .btn-contain1 button:hover {
+  background-color: darkred;
+}
+
+
