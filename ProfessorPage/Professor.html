@@ -2,34 +2,56 @@
 <html lang="el">
 <head>
 <meta charset="UTF-8">
-<title>Login Page</title>
-
- <link rel="stylesheet" href="Professor.css">
-
+<title>Διδάσκων - Πίνακας Ελέγχου</title>
+<link rel="stylesheet" href="professor.css">
 </head>
-
-
 <body>
 
 <div class="header">
   <h1>Διδάσκων</h1>
+  <div class="btn-contain1">
+    <button onclick="window.location.href='../Login/logout.php'">Αποσύνδεση</button>
+  </div>
 </div>
 
+<div class="dashboard">
+  <div class="card">
+    <h3>Προβολή & Δημιουργία Θεμάτων</h3>
+    <p>Δείτε και καταχωρήστε νέα θέματα διπλωματικών για τους φοιτητές σας.</p>
+    <button onclick="window.location.href='themata.html'">Μετάβαση</button>
+  </div>
 
+  <div class="card">
+    <h3>Ανάθεση Θέματος</h3>
+    <p>Αναθέστε ένα συγκεκριμένο θέμα σε φοιτητή για έναρξη διπλωματικής.</p>
+    <button>Μετάβαση</button>
+  </div>
 
-<div class="btn-container">
-  <button onclick="window.location.href='themata.html'">
-    Προβολή και Δημιουργία θεμάτων προς ανάθεση
-  </button>
-  <button>Αρχική ανάθεση θέματος σε φοιτητή</button>
-  <button>Προβολή λίστας διπλωματικών</button>
-  <button>Προβολή προσκλήσεων συμμετοχής σε τριμελή</button>
-  <button>Προβολή στατιστικών</button>
-  <button>Διαχείριση διπλωματικών εργασιών</button>
+  <div class="card">
+    <h3>Λίστα Διπλωματικών</h3>
+    <p>Δείτε όλες τις διπλωματικές εργασίες που επιβλέπετε.</p>
+    <button>Μετάβαση</button>
+  </div>
+
+  <div class="card">
+    <h3>Προσκλήσεις σε Τριμελή</h3>
+    <p>Δείτε τις προσκλήσεις για συμμετοχή σε επιτροπές διπλωματικών.</p>
+    <button>Μετάβαση</button>
+  </div>
+
+  <div class="card">
+    <h3>Στατιστικά</h3>
+    <p>Παρακολουθήστε στατιστικά στοιχεία για τις διπλωματικές σας.</p>
+    <button>Μετάβαση</button>
+  </div>
+
+  <div class="card">
+    <h3>Διαχείριση Διπλωματικών</h3>
+    <p>Επεξεργαστείτε, ενημερώστε ή αρχειοθετήστε διπλωματικές εργασίες.</p>
+    <button>Μετάβαση</button>
+  </div>
 </div>
 
-
-
-
+<script src="Professor.js"></script>
 </body>
 </html>

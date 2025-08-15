@@ -2,53 +2,67 @@
 <html lang="el">
 <head>
 <meta charset="UTF-8">
-<title>Login Page</title>
+<title>Σύνδεση</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>    
- <div class="header1">
-  <button class="login-btn" onclick="openpopup()">Login</button>
-</div>
 
-<div class="header2">
-  <h1>Καλώς ήρθατε!</h1>
-</div>
+<header class="main-header">
+  <div class="header-left">
+    <h1>Σύστημα Διαχείρισης Διπλωματικών</h1>
+  </div>
+  <div class="header-right">
+    <button class="login-btn" onclick="openpopup()">Σύνδεση</button>
+  </div>
+</header>
 
+<main>
+  <section class="welcome-section">
+    <h2>Καλώς ήρθατε!</h2>
+  </section>
 
+  <section id="public-announcements" class="card">
+    <h3>Ανακοινώσεις Παρουσίασης Διπλωματικών</h3>
+    <div class="filters">
+      <label>Από: <input type="date" id="startDate"></label>
+      <label>Έως: <input type="date" id="endDate"></label>
+      <select id="formatSelect">
+        <option value="json">JSON</option>
+        <option value="xml">XML</option>
+      </select>
+      <button onclick="loadAnnouncements()">Φόρτωση</button>
+    </div>
+    <div id="announcements-list"></div>
+  </section>
+</main>
 
 <!-- Login Popup -->
 <div id="loginpopup" class="popup">
   <div class="popup_content">
     <span class="close" onclick="closepopup()">&times;</span>
-
-        <form id="loginForm">
-        <div class="form_group">
-        <label for="first_name">First Name:</label>
+    <h3>Σύνδεση</h3>
+    <form id="loginForm">
+      <div class="form_group">
+        <label for="first_name">Όνομα:</label>
         <input type="text" name="first_name" required>
       </div>
 
       <div class="form_group">
-        <label for="last_name">Last Name:</label>
+        <label for="last_name">Επώνυμο:</label>
         <input type="text" name="last_name" required>
       </div>
 
       <div class="form_group">
-        <label for="password">Password:</label>
+        <label for="password">Κωδικός:</label>
         <input type="password" name="password" required>
       </div>
 
-      <button class="submit_btn" type="submit">Submit</button>
+      <button class="submit_btn" type="submit">Είσοδος</button>
       <div id="errorMsg"></div>
-
     </form>
   </div>
 </div>
 
 <script src="login.js"></script>
-
-
-
 </body>
 </html>
