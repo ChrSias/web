@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<title>Φοιτητής/τρια - Πίνακας Ελέγχου</title>
+<link rel="stylesheet" href="student.css">
+</head>
+<body>
+
+<div class="header">
+  <h1>Φοιτητής/τρια</h1>
+  <div class="btn-contain1">
+    <button onclick="window.location.href='../Login/logout.php'">Αποσύνδεση</button>
+  </div>
+</div>
+
+<div class="dashboard">
+  <!-- 1) Προβολή Θέματος -->
+  <div class="card">
+    <h3>Προβολή Θέματος</h3>
+    <p>Δείτε τις λεπτομέρειες της διπλωματικής, την περιγραφή, το συνημμένο αρχείο και την τρέχουσα κατάστασή της. 
+       Εμφανίζονται επίσης τα μέλη της τριμελούς επιτροπής και ο χρόνος που έχει περάσει από την ανάθεση.</p>
+    <button onclick="window.location.href='view_thesis.html'">Μετάβαση</button>
+  </div>
+
+  <!-- 2) Επεξεργασία Προφίλ -->
+  <div class="card">
+    <h3>Επεξεργασία Προφίλ</h3>
+    <p>Διαχειριστείτε τα στοιχεία επικοινωνίας σας (διεύθυνση, email, κινητό, σταθερό).</p>
+    <button onclick="window.location.href='edit_profile.html'">Μετάβαση</button>
+  </div>
+
+  <!-- 3) Διαχείριση Διπλωματικής -->
+  <div class="card">
+    <h3>Διαχείριση Διπλωματικής Εργασίας</h3>
+    <p>Ανάλογα με την κατάστασή της, επιλέξτε μέλη τριμελούς, ανεβάστε αρχεία, καταχωρήστε ημερομηνίες εξέτασης και δείτε το πρακτικό.</p>
+    <button onclick="window.location.href='manage_thesis.html'">Μετάβαση</button>
+  </div>
+</div>
+
+<script src="student.js"></script>
+</body>
+</html>
