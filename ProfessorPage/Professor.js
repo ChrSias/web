@@ -6,3 +6,4 @@ function confirmLogout() {
 window.addEventListener("beforeunload", function () {
   navigator.sendBeacon("../Login/logout.php");
 });
+
