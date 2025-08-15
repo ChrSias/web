@@ -58,4 +58,3 @@ $password = $_POST['password'] ?? '';
 }
 
 ?>
-

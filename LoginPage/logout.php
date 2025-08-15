@@ -1,12 +1,9 @@
 <?php
-
 session_start();
 session_unset();
 session_destroy();
 
-header("Location: ../Login/login.html");
-
-
-$role = $_GET['role'] ?? '';
-
+// Redirect to login page
+header("Location: login.html");
+exit;
 ?>
