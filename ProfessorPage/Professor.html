@@ -1,57 +1,70 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<title>Διδάσκων - Πίνακας Ελέγχου</title>
-<link rel="stylesheet" href="professor.css">
+  <meta charset="UTF-8" />
+  <!--Leei ston browser pws na emfanizei thn selida, vohtaei gia ta kinhta -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Διδάσκων - Πίνακας Ελέγχου</title>
+
+  <link rel="stylesheet" href="professor.css" />
+
+  <!--Eksoterikh vivliothikh poy einai gia ta eikonidia poy emfanizontai sthn selida...px ena anoixto vivlio ktl-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-
 <div class="header">
   <h1>Διδάσκων</h1>
   <div class="btn-contain1">
-    <button onclick="window.location.href='../Login/logout.php'">Αποσύνδεση</button>
+    <button id="logoutBtn">Αποσύνδεση</button>
   </div>
 </div>
 
 <div class="dashboard">
   <div class="card">
+    <!--to icon poy einai mesa sthn karta-->
+    <i class="fa-solid fa-lightbulb card-icon icon-blue"></i>
     <h3>Προβολή & Δημιουργία Θεμάτων</h3>
-    <p>Δείτε και καταχωρήστε νέα θέματα διπλωματικών για τους φοιτητές σας.</p>
+    <p>Δείτε και καταχωρήστε νέα θέματα διπλωματικών.</p>
     <button onclick="window.location.href='themata.html'">Μετάβαση</button>
   </div>
 
   <div class="card">
+    <i class="fa-solid fa-user-plus card-icon icon-green"></i>
     <h3>Ανάθεση Θέματος</h3>
-    <p>Αναθέστε ένα συγκεκριμένο θέμα σε φοιτητή για έναρξη διπλωματικής.</p>
+    <p>Αναθέστε συγκεκριμένο θέμα διπλωματικής εργασίας σε φοιτητή. </p>
     <button>Μετάβαση</button>
   </div>
 
   <div class="card">
+    <i class="fa-solid fa-list card-icon icon-orange"></i>
     <h3>Λίστα Διπλωματικών</h3>
-    <p>Δείτε όλες τις διπλωματικές εργασίες που επιβλέπετε.</p>
+    <p>Δείτε όλες τις διπλωματικές εργασίες των φοιτητών σας.</p>
     <button>Μετάβαση</button>
   </div>
 
   <div class="card">
+    <i class="fa-solid fa-envelope-open-text card-icon icon-purple"></i>
     <h3>Προσκλήσεις σε Τριμελή</h3>
-    <p>Δείτε τις προσκλήσεις για συμμετοχή σε επιτροπές διπλωματικών.</p>
+    <p>Δείτε τις προσκλήσεις σας για συμμετοχή σε επιτροπή.</p>
     <button>Μετάβαση</button>
   </div>
 
   <div class="card">
+    <i class="fa-solid fa-chart-pie card-icon icon-teal"></i>
     <h3>Στατιστικά</h3>
-    <p>Παρακολουθήστε στατιστικά στοιχεία για τις διπλωματικές σας.</p>
+    <p>Δείτε τα στατιστικά στοιχεία των διπλωματικών σας.</p>
     <button>Μετάβαση</button>
   </div>
 
   <div class="card">
+    <i class="fa-solid fa-folder-open card-icon icon-red"></i>
     <h3>Διαχείριση Διπλωματικών</h3>
-    <p>Επεξεργαστείτε, ενημερώστε ή αρχειοθετήστε διπλωματικές εργασίες.</p>
+    <p>Επεξεργαστείτε, ενημερώστε/αρχειοθετήστε διπλωματικές εργασίες.</p>
     <button>Μετάβαση</button>
   </div>
 </div>
 
-<script src="Professor.js"></script>
+<script src="professor.js"></script>
+
 </body>
 </html>

@@ -15,37 +15,35 @@ if ($action === 'list') {
 }
 
 if ($action === 'add' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-  //  $topic_id       = $_POST['topic_id'] ?? null;
-    $student_id     = $_POST['student_id'] ?? null;
-    $supervisor_id  = $_POST['supervisor_id'] ?? null;
-    $committee_id   = $_POST['committee_id'] ?? null;
-    $status         = $_POST['status'] ?? null;
-    $grade          = $_POST['grade'] ?? null;
-    $start_date     = $_POST['start_date'] ?? null;
-    $completion_date= $_POST['completion_date'] ?? null;
+    $title   = $_POST['title'] ?? null;
+    $summary = $_POST['summary'] ?? null;
 
-    if (!$topic_id || !$student_id || !$supervisor_id || !$committee_id || !$status || !$start_date) {
+    $pdfPath = null;
+    if (!empty($_FILES['pdf_file']['name'])) {
+        $uploadDir = __DIR__ . "/uploads/";
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+        $filename = time() . "_" . basename($_FILES['pdf_file']['name']);
+        $targetFile = $uploadDir . $filename;
+
+        if (move_uploaded_file($_FILES['pdf_file']['tmp_name'], $targetFile)) {
+            $pdfPath = "uploads/" . $filename;
+        }
+    }
+
+    if (!$title || !$summary) {
         echo json_encode(['success' => false, 'message' => 'Συμπληρώστε όλα τα απαιτούμενα πεδία.']);
         exit;
     }
 
-    $stmt = $mysqli->prepare("INSERT INTO theses (topic_id, student_id, supervisor_id, committee_id, status, grade, start_date, completion_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param(
-        "iiisdss",
-     //   $topic_id,
-        $student_id,
-        $supervisor_id,
-        $committee_id,
-        $status,
-        $grade,
-        $start_date,
-        $completion_date
-    );
+    $stmt = $mysqli->prepare("INSERT INTO theses (title, summary, pdf_path) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $title, $summary, $pdfPath);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true, 'message' => 'Το θέμα καταχωρήθηκε με επιτυχία.']);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Σφάλμα κατά την καταχώρηση: ' . $mysqli->error]);
+        echo json_encode(['success' => false, 'message' => 'Σφάλμα: ' . $mysqli->error]);
     }
     exit;
 }
