@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<title>Φοιτητής/τρια - Πίνακας Ελέγχου</title>
-<link rel="stylesheet" href="student.css">
+  <meta charset="UTF-8" />
+    <!--Leei ston browser pws na emfanizei thn selida, vohtaei gia ta kinhta -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Φοιτητής/τρια - Πίνακας Ελέγχου</title>
+
+  <link rel="stylesheet" href="student.css" />
+
+  <!--Eksoterikh vivliothikh(font_awesome) poy einai gia ta eikonidia poy emfanizontai sthn selida...px ena anoixto vivlio ktl-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
-<div class="header">
-  <h1>Φοιτητής/τρια</h1>
-  <div class="btn-contain1">
-    <button onclick="window.location.href='../Login/logout.php'">Αποσύνδεση</button>
-  </div>
-</div>
-
-<div class="dashboard">
-  <!-- 1) Προβολή Θέματος -->
-  <div class="card">
-    <h3>Προβολή Θέματος</h3>
-    <p>Δείτε τις λεπτομέρειες της διπλωματικής, την περιγραφή, το συνημμένο αρχείο και την τρέχουσα κατάστασή της. 
-       Εμφανίζονται επίσης τα μέλη της τριμελούς επιτροπής και ο χρόνος που έχει περάσει από την ανάθεση.</p>
-    <button onclick="window.location.href='view_thesis.html'">Μετάβαση</button>
+  <div class="header">
+    <h1>Φοιτητής/τρια</h1>
+    <div class="btn-contain1">
+      <button id="logoutBtn">Αποσύνδεση</button>
+    </div>
   </div>
 
-  <!-- 2) Επεξεργασία Προφίλ -->
-  <div class="card">
-    <h3>Επεξεργασία Προφίλ</h3>
-    <p>Διαχειριστείτε τα στοιχεία επικοινωνίας σας (διεύθυνση, email, κινητό, σταθερό).</p>
-    <button onclick="window.location.href='edit_profile.html'">Μετάβαση</button>
+  <div class="dashboard">
+    <div class="card">
+      <i class="fa-solid fa-book-open card-icon icon-blue"></i>
+      <h3>Προβολή Θέματος</h3>
+      <p>Δείτε τις λεπτομέρειες της διπλωματικής σας, την τρέχουσα κατάστασή της, τα μέλη της τριμελούς και τον χρόνο από την ανάθεση.</p>
+      <button onclick="window.location.href='view_thesis.html'">Μετάβαση</button>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-user-pen card-icon icon-green"></i>
+      <h3>Επεξεργασία Προφίλ</h3>
+      <p>Διαχειριστείτε τα στοιχεία επικοινωνίας σας (διεύθυνση, email, κινητό, σταθερό).</p>
+      <button onclick="window.location.href='edit_profile.html'">Μετάβαση</button>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-folder-open card-icon icon-orange"></i>
+      <h3>Διαχείριση Διπλωματικής Εργασίας</h3>
+      <p>Επιλογή τριμελούς (υπό ανάθεση), ανέβασμα αρχείων/συνδέσμων & καταχώρηση εξέτασης (υπό εξέταση), προβολή πρακτικού & ιστορικού (περατωμένη).</p>
+      <button onclick="window.location.href='manage_thesis.html'">Μετάβαση</button>
+    </div>
   </div>
 
-  <!-- 3) Διαχείριση Διπλωματικής -->
-  <div class="card">
-    <h3>Διαχείριση Διπλωματικής Εργασίας</h3>
-    <p>Ανάλογα με την κατάστασή της, επιλέξτε μέλη τριμελούς, ανεβάστε αρχεία, καταχωρήστε ημερομηνίες εξέτασης και δείτε το πρακτικό.</p>
-    <button onclick="window.location.href='manage_thesis.html'">Μετάβαση</button>
-  </div>
-</div>
+  <script src="student.js"></script>
 
-<script src="student.js"></script>
 </body>
 </html>
