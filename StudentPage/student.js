@@ -1,8 +1,12 @@
 function confirmLogout() {
-  return confirm("Είσαι σίγουρος/η ότι θέλεις να αποσυνδεθείς;");
+  if (confirm("Είσαι σίγουρος/η ότι θέλεις να αποσυνδεθείς;")) {
+    window.location.href = '../Login/logout.php';
+  }
 }
 
-// Όταν κλείνει το tab, αυτόματα κάνει logout τον χρήστη
+document.getElementById('logoutBtn').addEventListener('click', confirmLogout);
+
+//Otan kleinei to tab, aftomata kanei logout
 window.addEventListener("beforeunload", function () {
   navigator.sendBeacon("../Login/logout.php");
 });

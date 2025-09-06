@@ -1,75 +1,8 @@
-
-<!--
 <!DOCTYPE html>
 <html lang="el">
 <head>
 <meta charset="UTF-8">
-<title>Προβολή και Καταχώρηση Θεμάτων</title>
-<link rel="stylesheet" href="themata.css">
-</head>
-<body>
-
-<h1>Προβολή και Καταχώρηση Θεμάτων</h1>
-
-<!--<form id="thesisForm">
-  <label>Topic ID:
-    <input type="number" name="topic_id" required>
-  </label>
-->
-  <label>Student ID:
-    <input type="number" name="student_id" required>
-  </label>
-
-  <label>Supervisor ID:
-    <input type="number" name="supervisor_id" required>
-  </label>
-
-  <label>Committee ID:
-    <input type="number" name="committee_id" required>
-  </label>
-
-  <label>Status:
-    <input type="text" name="status" required>
-  </label>
-
-  <label>Grade:
-    <input type="number" name="grade" step="0.1">
-  </label>
-
-  <label>Start Date:
-    <input type="date" name="start_date" required>
-  </label>
-
-  <label>Completion Date:
-    <input type="date" name="completion_date">
-  </label>
-
-  <button type="submit">Καταχώρηση Θέματος</button>
-</form>
-
-<hr>
-
-<div id="thesesList"></div>
-<script>
-  function confirmLogout() {
-    return confirm("Είσαι σίγουρος/η ότι θέλεις να αποσυνδεθείς;");
-  }
-  /*Otan kleinei to tab aytomata kanei logout ton xrhsth*/
-    window.addEventListener('beforeunload', function() {
-  navigator.sendBeacon('../Login/logout.php');
-});
-</script>
-<script src="themata.js"></script>
-
-</body>
-</html>
-
--->
-<!DOCTYPE html>
-<html lang="el">
-<head>
-<meta charset="UTF-8">
-<title>Προβολή και Καταχώρηση Θεμάτων</title>
+<title>Προβολή & Καταχώρηση Θεμάτων</title>
 <link rel="stylesheet" href="themata.css">
 </head>
 <body>
@@ -77,38 +10,22 @@
 <div class="header">
   <h1>Προβολή & Καταχώρηση Θεμάτων</h1>
   <div class="btn-contain1">
-    <button onclick="window.location.href='../Login/logout.php'">Αποσύνδεση</button>
+      <button id="logoutBtn">Αποσύνδεση</button>
   </div>
 </div>
 
 <div class="form-section">
-  <form id="thesisForm">
-    <label>Student ID:
-      <input type="number" name="student_id" required>
+  <form id="thesisForm" enctype="multipart/form-data">
+    <label>Τίτλος Θέματος:
+      <input type="text" name="title" required>
     </label>
 
-    <label>Supervisor ID:
-      <input type="number" name="supervisor_id" required>
+    <label>Περίληψη:
+      <textarea name="summary" rows="4" required></textarea>
     </label>
 
-    <label>Committee ID:
-      <input type="number" name="committee_id" required>
-    </label>
-
-    <label>Status:
-      <input type="text" name="status" required>
-    </label>
-
-    <label>Grade:
-      <input type="number" name="grade" step="0.1">
-    </label>
-
-    <label>Start Date:
-      <input type="date" name="start_date" required>
-    </label>
-
-    <label>Completion Date:
-      <input type="date" name="completion_date">
+    <label>Αρχείο PDF:
+      <input type="file" name="pdf_file" accept="application/pdf">
     </label>
 
     <button type="submit">Καταχώρηση Θέματος</button>
@@ -118,17 +35,10 @@
 <hr>
 
 <div id="thesesList" class="dashboard">
-  <!-- Θα γεμίζει με κάρτες θεμάτων -->
+  <!-- Λίστα θεμάτων -->
 </div>
 
-<script>
-  function confirmLogout() {
-    return confirm("Είσαι σίγουρος/η ότι θέλεις να αποσυνδεθείς;");
-  }
-  window.addEventListener('beforeunload', function() {
-    navigator.sendBeacon('../Login/logout.php');
-  });
-</script>
+
 <script src="themata.js"></script>
 </body>
 </html>
