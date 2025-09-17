@@ -1,0 +1,257 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+.header {
+    background-color: #2e5aac;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header-buttons a {
+    background-color: #e53935;
+    color: white;
+    text-decoration: none;
+    border: none;
+    padding: 9px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.header-buttons a:hover {
+    background-color: #c62828;
+}
+
+.header-buttons a:first-child {
+    background-color: #4caf50;
+}
+
+.header-buttons a:first-child:hover {
+    background-color: #388e3c;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: grid;
+    gap: 25px;
+}
+
+/* Sections */
+.status-section,
+.thesis-section,
+.committee-section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.status-section:hover,
+.thesis-section:hover,
+.committee-section:hover {
+    transform: translateY(-2px);
+}
+
+/* Status Section */
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.status-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #2e5aac;
+}
+
+.status-badge {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Time Grid */
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.time-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.time-card:hover {
+    transform: scale(1.05);
+}
+
+.time-number {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #2e5aac;
+}
+
+.time-label {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Section Titles */
+.section-title {
+    color: #2e5aac;
+    margin: 0 0 20px 0;
+    font-size: 20px;
+    border-bottom: 2px solid #e1e5e9;
+    padding-bottom: 10px;
+}
+
+/* Thesis Details */
+.thesis-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2e5aac;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #2e5aac;
+    margin-bottom: 15px;
+}
+
+.thesis-description {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    line-height: 1.6;
+    border-left: 4px solid #6c757d;
+}
+
+/* Committee Grid */
+.committee-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.committee-grid:empty::after {
+    content: "Η τριμελής επιτροπή δεν έχει οριστεί ακόμη.";
+    display: block;
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 2px dashed #dee2e6;
+    grid-column: 1 / -1;
+}
+
+.member-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.member-card.supervisor {
+    border-left: 4px solid #2e5aac;
+}
+
+.member-role {
+    font-size: 12px;
+    color: #6c757d;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.member-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2e5aac;
+    margin-bottom: 5px;
+}
+
+.member-department {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 0 10px;
+    }
+    
+    .status-section,
+    .thesis-section,
+    .committee-section {
+        padding: 20px;
+    }
+    
+    .header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .header-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .time-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .committee-grid {
+        grid-template-columns: 1fr;
+    }
+}

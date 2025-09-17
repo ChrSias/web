@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Η Διπλωματική μου</title>
+    <link rel="stylesheet" href="themata_foititi.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>Η Διπλωματική μου Εργασία</h1>
+    <div class="header-buttons">
+        <a href="student_dashboard.html">Πίσω στον Πίνακα</a>
+        <button onclick="confirmLogout()">Αποσύνδεση</button>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Κατάσταση Εργασίας -->
+    <div class="status-section">
+        <div class="status-header">
+            <h3>Κατάσταση Εργασίας</h3>
+            <span class="status-badge" id="thesisStatus"></span>
+        </div>
+        <div class="time-grid">
+            <div class="time-card">
+                <div class="time-number" id="daysElapsed">0</div>
+                <div class="time-label">Ημέρες από ανάθεση</div>
+            </div>
+            <div class="time-card">
+                <div class="time-number" id="daysRemaining">0</div>
+                <div class="time-label">Ημέρες που απομένουν</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Θέμα Διπλωματικής -->
+    <div class="thesis-section">
+        <h2 class="section-title">Θέμα Διπλωματικής</h2>
+        <div class="thesis-title" id="thesisTitle">
+            <!-- Ο τίτλος θα φορτωθεί από τη βάση -->
+        </div>
+        <div class="thesis-description" id="thesisDescription">
+            <!-- Η περιγραφή θα φορτωθεί από τη βάση -->
+        </div>
+    </div>
+
+    <!-- Επιτροπή Αξιολόγησης -->
+    <div class="committee-section">
+        <h2 class="section-title">Τριμελής Επιτροπή</h2>
+        <div class="committee-grid" id="committeeMembers">
+            <!-- Τα δεδομένα θα φορτώνονται από τη βάση -->
+        </div>
+    </div>
+</div>
+<script>
+function confirmLogout() {
+  if (confirm("Είσαι σίγουρος/η ότι θέλεις να αποσυνδεθείς;")) {
+    window.location.href = '../LoginPage/logout.php';
+  }
+}
+</script>
+</body>
+</html>
