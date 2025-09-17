@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Διδάσκων - Πίνακας Ελέγχου</title>
+  <link rel="stylesheet" href="Professor.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+<div class="header">
+  <h1>Διδάσκων</h1>
+  <div class="btn-contain1">
+    <button id="logoutBtn">Αποσύνδεση</button>
+  </div>
+</div>
+
+<div class="dashboard">
+  <div class="card">
+    <i class="fa-solid fa-lightbulb card-icon icon-blue"></i>
+    <h3>Προβολή & Δημιουργία Θεμάτων</h3>
+    <p>Δείτε και καταχωρήστε νέα θέματα διπλωματικών.</p>
+    <button onclick="window.location.href='themata.html'">Μετάβαση</button>
+  </div>
+
+  <div class="card">
+    <i class="fa-solid fa-user-plus card-icon icon-green"></i>
+    <h3>Ανάθεση Θέματος</h3>
+    <p>Αναθέστε συγκεκριμένο θέμα διπλωματικής εργασίας σε φοιτητή.</p>
+    <button onclick="window.location.href='anathesi.html'">Μετάβαση</button>
+  </div>
+
+  <div class="card">
+    <i class="fa-solid fa-list card-icon icon-orange"></i>
+    <h3>Λίστα Διπλωματικών</h3>
+    <p>Δείτε όλες τις διπλωματικές εργασίες των φοιτητών σας.</p>
+    <button onclick="window.location.href='lista_diplomatikon.html'">Μετάβαση</button>
+  </div>
+
+  <div class="card">
+    <i class="fa-solid fa-envelope-open-text card-icon icon-purple"></i>
+    <h3>Προσκλήσεις σε Τριμελή</h3>
+    <p>Δείτε τις προσκλήσεις σας για συμμετοχή σε επιτροπή.</p>
+    <button onclick="window.location.href='proskliseis_trimelous.html'">Μετάβαση</button>
+  </div>
+
+  <div class="card">
+    <i class="fa-solid fa-chart-pie card-icon icon-teal"></i>
+    <h3>Στατιστικά</h3>
+    <p>Δείτε τα στατιστικά στοιχεία των διπλωματικών σας.</p>
+    <button onclick="window.location.href='statistika.html'">Μετάβαση</button>
+  </div>
+
+  <div class="card">
+    <i class="fa-solid fa-folder-open card-icon icon-red"></i>
+    <h3>Διαχείριση Διπλωματικών</h3>
+    <p>Επεξεργαστείτε, ενημερώστε/αρχειοθετήστε διπλωματικές εργασίες.</p>
+    <button onclick="window.location.href='diaxeirish_diplomatikon.html'">Μετάβαση</button>
+  </div>
+</div>
+
+<script src="Professor.js"></script>
+</body>
+</html>

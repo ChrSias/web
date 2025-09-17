@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Προσκλήσεις σε Τριμελή</title>
+    <link rel="stylesheet" href="proskliseis_trimelous.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>Προσκλήσεις σε Τριμελή Επιτροπή</h1>
+    <div class="header-buttons">
+        <button onclick="window.location.href='Professor.html'">Πίσω στον Πίνακα</button>
+        <button onclick="confirmLogout()">Αποσύνδεση</button>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Λίστα προσκλήσεων -->
+    <div class="invitations-section">
+        <div class="section-header">
+            <h2>Εκκρεμείς Προσκλήσεις</h2>
+            <div class="invitations-count">
+                <span id="totalCount">Σύνολο: 0 προσκλήσεις</span>
+            </div>
+        </div>
+        
+        <div id="invitationsList" class="invitations-list">
+            <!-- Τα δεδομένα θα φορτώνονται από PHP -->
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmLogout() {
+  if (confirm("Είσαι σίγουρος/η ότι θέλεις να αποσυνδεθείς;")) {
+    window.location.href = '../LoginPage/logout.php';
+  }
+}
+</script>
+
+</body>
+</html>

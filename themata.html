@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Θέματα Διπλωματικών</title>
+    <link rel="stylesheet" href="themata.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>Διαχείριση Θεμάτων</h1>
+    <div class="header-buttons">
+        <button onclick="window.location.href='Professor.html'">Πίσω στον Πίνακα</button>
+        <button onclick="confirmLogout()">Αποσύνδεση</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="form-section">
+        <h2>Προσθήκη Νέου Θέματος</h2>
+        <form id="themaForm" method="POST" action="add_tema.php">
+            <div class="form-group">
+                <label for="title">Τίτλος:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Περιγραφή:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <button type="submit">Προσθήκη Θέματος</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <div class="list-section">
+        <h2>Τα Θέματά Μου</h2>
+        <div id="themataList" class="themata-list">
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmLogout() {
+  if (confirm("Είσαι σίγουρος/η ότι θέλεις να αποσυνδεθείς;")) {
+    window.location.href = '../LoginPage/logout.php';
+  }
+}
+</script>
+
+</body>
+</html>

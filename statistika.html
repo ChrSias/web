@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Στατιστικά</title>
+    <link rel="stylesheet" href="statistika.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>Στατιστικά Διπλωματικών</h1>
+    <div class="header-buttons">
+        <button onclick="window.location.href='Professor.html'">Πίσω στον Πίνακα</button>
+        <button onclick="confirmLogout()">Αποσύνδεση</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="role-selector-section">
+        <h2>Επιλογή Ρόλου</h2>
+        <div class="role-buttons">
+            <button id="supervisorBtn" class="role-btn active" onclick="selectRole('supervisor')">Επιβλέπων</button>
+            <button id="memberBtn" class="role-btn" onclick="selectRole('member')">Μέλος Τριμελούς</button>
+            <button id="bothBtn" class="role-btn" onclick="selectRole('both')">Και τα δύο</button>
+        </div>
+    </div>
+
+    <div class="chart-section">
+        <h2>Μέσος Χρόνος Περάτωσης (μήνες)</h2>
+        <div class="chart-container">
+            <div class="chart-placeholder" id="timeChart"></div>
+        </div>
+    </div>
+
+    <div class="chart-section">
+        <h2>Μέσος Βαθμός Διπλωματικών</h2>
+        <div class="chart-container">
+            <div class="chart-placeholder" id="gradeChart"></div>
+        </div>
+    </div>
+
+    <div class="chart-section">
+        <h2>Συνολικό Πλήθος Διπλωματικών</h2>
+        <div class="chart-container">
+            <div class="chart-placeholder" id="countChart"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmLogout() {
+  if (confirm("Είσαι σίγουρος/η ότι θέλεις να αποσυνδεθείς;")) {
+    window.location.href = '../LoginPage/logout.php';
+  }
+}
+
+function selectRole(role) {
+    document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
+    
+    if (role === 'supervisor') {
+        document.getElementById('supervisorBtn').classList.add('active');
+    } else if (role === 'member') {
+        document.getElementById('memberBtn').classList.add('active');
+    } else {
+        document.getElementById('bothBtn').classList.add('active');
+    }
+    
+    console.log('Selected role:', role);
+}
+</script>
+
+</body>
+</html>

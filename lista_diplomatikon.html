@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Λίστα Διπλωματικών</title>
+    <link rel="stylesheet" href="lista_diplomatikon.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>Λίστα Διπλωματικών Εργασιών</h1>
+    <div class="header-buttons">
+        <button onclick="window.location.href='Professor.html'">Πίσω στον Πίνακα</button>
+        <button onclick="confirmLogout()">Αποσύνδεση</button>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Φίλτρα αναζήτησης -->
+    <div class="filters-section">
+        <h2>Φίλτρα Αναζήτησης</h2>
+        <form id="filtersForm" method="GET" action="">
+            <div class="filter-row">
+                <div class="form-group">
+                    <label for="roleFilter">Ρόλος:</label>
+                    <select id="roleFilter" name="role">
+                        <option value="">-- Όλοι οι Ρόλοι --</option>
+                        <option value="επιβλέπων">Επιβλέπων</option>
+                        <option value="μέλος_τριμελούς">Μέλος Τριμελούς Επιτροπής</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="statusFilter">Κατάσταση:</label>
+                    <select id="statusFilter" name="status">
+                        <option value="">-- Όλες οι Καταστάσεις --</option>
+                        <option value="ενεργό">Ενεργό</option>
+                        <option value="υπό_εξέλιξη">Υπό Εξέλιξη</option>
+                        <option value="ολοκληρωμένο">Ολοκληρωμένο</option>
+                        <option value="αναβληθέν">Αναβληθέν</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="filter-actions">
+                <button type="submit">Εφαρμογή Φίλτρων</button>
+                <button type="button" onclick="clearFilters()">Καθαρισμός</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Λίστα διπλωματικών -->
+    <div class="thesis-list-section">
+        <div class="section-header">
+            <h2>Διπλωματικές Εργασίες</h2>
+            <div class="thesis-count">
+                <span id="totalCount">Σύνολο: 0 εργασίες</span>
+            </div>
+        </div>
+        
+        <div id="thesisList" class="thesis-list">
+            <!-- Τα δεδομένα θα φορτώνονται από PHP -->
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmLogout() {
+  if (confirm("Είσαι σίγουρος/η ότι θέλεις να αποσυνδεθείς;")) {
+    window.location.href = '../LoginPage/logout.php';
+  }
+}
+
+function clearFilters() {
+    document.getElementById('filtersForm').reset();
+    window.location.href = window.location.pathname;
+}
+</script>
+
+</body>
+</html>
