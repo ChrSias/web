@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Επεξεργασία Προφίλ</title>
+  <link rel="stylesheet" href="student.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Επεξεργασία Προφίλ</h1>
+    <div class="btn-contain1">
+      <button onclick="window.location.href='student.html'">⬅ Πίσω</button>
+    </div>
+  </div>
+
+  <div class="dashboard">
+    <div class="card">
+      <i class="fa-solid fa-user card-icon icon-green"></i>
+      <h3>Στοιχεία Επικοινωνίας</h3>
+
+      <form id="profileForm" class="profile-form">
+        <div class="form-row">
+          <label for="address">Πλήρης Διεύθυνση:</label>
+          <textarea id="address" name="address" rows="2" placeholder="Διεύθυνση" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+
+        <div class="form-row">
+          <label for="mobile">Κινητό:</label>
+          <input type="text" id="mobile" name="mobile" placeholder="Κινητό" required>
+        </div>
+
+        <div class="form-row">
+          <label for="phone">Σταθερό:</label>
+          <input type="text" id="phone" name="phone" placeholder="Σταθερό">
+        </div>
+
+        <button type="submit" class="btn-save">Αποθήκευση</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="editprofile.js"></script>
+</body>
+</html>
