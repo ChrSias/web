@@ -111,3 +111,55 @@ body {
   .dashboard { padding: 16px; gap: 16px; }
   .card { padding: 16px; }
 }
+  
+/* Φόρμα Προφίλ */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 700px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.form-row label {
+  flex: 0 0 150px;  /* ίδιο πλάτος όλα τα labels */
+  font-weight: bold;
+  text-align: right;
+}
+
+.form-row input,
+.form-row textarea {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.form-row textarea {
+  resize: vertical;
+  min-height: 38px;
+  max-height: 120px;
+}
+
+.btn-save {
+  align-self: flex-end;   /* πάει δεξιά */
+  background: #2d7d46;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn-save:hover {
+  background: #236638;
+}

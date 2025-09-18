@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Διαχείριση Διπλωματικής</title>
+  <link rel="stylesheet" href="student.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="header">
+    <h1>Διαχείριση Διπλωματικής</h1>
+    <div class="btn-contain1">
+      <button onclick="window.location.href='student.html'">⬅ Πίσω</button>
+    </div>
+  </div>
+
+  <div class="dashboard">
+
+    <!-- Υπό Ανάθεση -->
+    <div class="card" id="under-assignment">
+      <i class="fa-solid fa-user-plus card-icon icon-blue"></i>
+      <h3>Επιλογή Τριμελούς</h3>
+      <form action="assign_committee.php" method="post">
+        <label>Επιλέξτε Μέλη:</label>
+        <select name="member1" required>
+          <option>--Διδάσκων 1--</option>
+        </select>
+        <select name="member2" required>
+          <option>--Διδάσκων 2--</option>
+        </select>
+        <button type="submit">Αποστολή Προσκλήσεων</button>
+      </form>
+      <p><em>Αναμονή αποδοχής από τα μέλη...</em></p>
+    </div>
+
+    <!-- Υπό Εξέταση -->
+    <div class="card" id="under-exam">
+      <i class="fa-solid fa-file-arrow-up card-icon icon-green"></i>
+      <h3>Ανέβασμα Πρόχειρου</h3>
+      <form action="upload_draft.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="draft_file" required>
+        <button type="submit">Ανέβασμα</button>
+      </form>
+
+      <h4>Σύνδεσμοι Πρόσθετου Υλικού</h4>
+      <form action="add_link.php" method="post">
+        <input type="url" name="resource_link" placeholder="https://..." required>
+        <button type="submit">Προσθήκη</button>
+      </form>
+    </div>
+
+    <div class="card" id="exam-schedule">
+      <i class="fa-solid fa-calendar card-icon icon-orange"></i>
+      <h3>Καταχώρηση Εξέτασης</h3>
+      <form action="exam_register.php" method="post">
+        <label>Ημερομηνία:</label>
+        <input type="date" name="exam_date" required>
+        <label>Ώρα:</label>
+        <input type="time" name="exam_time" required>
+        <label>Τρόπος Εξέτασης:</label>
+        <select name="mode">
+          <option value="in-person">Δια ζώσης</option>
+          <option value="online">Διαδικτυακά</option>
+        </select>
+        <label>Αίθουσα ή Σύνδεσμος:</label>
+        <input type="text" name="exam_place" required>
+        <button type="submit">Καταχώρηση</button>
+      </form>
+    </div>
+
+    <div class="card" id="exam-result">
+      <i class="fa-solid fa-file-signature card-icon icon-purple"></i>
+      <h3>Πρακτικό Εξέτασης</h3>
+      <p><a href="view_minutes.php">Δείτε το πρακτικό</a></p>
+      <form action="submit_repository.php" method="post">
+        <label>Σύνδεσμος Νημερτής:</label>
+        <input type="url" name="repository_link" required>
+        <button type="submit">Καταχώρηση</button>
+      </form>
+    </div>
+
+    <!-- Περατωμένη -->
+    <div class="card" id="completed">
+      <i class="fa-solid fa-circle-check card-icon icon-gray"></i>
+      <h3>Περατωμένη Διπλωματική</h3>
+      <p>Δείτε το <a href="view_history.php">ιστορικό αλλαγών</a> και το <a href="view_minutes.php">πρακτικό εξέτασης</a>.</p>
+    </div>
+
+  </div>
+</body>
+</html>
